@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a>
   <a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
-  <a href="https://github.com/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management?style=social" alt="GitHub Stars" /></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management?style=social" alt="GitHub_Stars" /></a>
   <a href="https://github.com/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management/network/members"><img src="https://img.shields.io/github/forks/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management?style=social" alt="GitHub Forks" /></a>
   <a href="https://github.com/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT" /></a>
   <a href="https://github.com/ishandutta2007"><img alt="GitHub followers" src="https://img.shields.io/github/followers/ishandutta2007?label=Follow" /></a>
@@ -63,7 +63,7 @@ The following table evaluates top commercial SaaS solutions for team hierarchy m
 
 Curated self-hosted engines and frameworks for implementing hierarchical multi-tenancy, Role-Based Access Control (RBAC), ReBAC (Relationship-Based Access Control), and Identity Governance. Repositories are ranked in descending order of GitHub community stars.
 
-| 📦 Repository & Badge | ⭐ GitHub Stars | 📜 License | 🎯 Primary Architecture Focus | 🛠️ Key Capabilities & Hierarchy Support |
+| 📦 Repository & Badge | ⭐ GitHub_Stars | 📜 License | 🎯 Primary Architecture Focus | 🛠️ Key Capabilities & Hierarchy Support |
 | :--- | :--- | :--- | :--- | :--- |
 | **[Keycloak](https://github.com/keycloak/keycloak)** <br> [![Stars](https://img.shields.io/github/stars/keycloak/keycloak?style=social&color=white)](https://github.com/keycloak/keycloak/stargazers) | **37,600+** | Apache-2.0 | Multi-Tenant IAM & Enterprise SSO | Features **Organization Groups** (introduced in Keycloak 26.6+) enabling nested organizational hierarchies (`/Corp/Engineering/DevOps`) isolated per tenant, claim-based auto group mapping, OIDC/SAML assertions, and LDAP federation. |
 | **[Authelia](https://github.com/authelia/authelia)** <br> [![Stars](https://img.shields.io/github/stars/authelia/authelia?style=social&color=white)](https://github.com/authelia/authelia/stargazers) | **29,400+** | Apache-2.0 | Lightweight Reverse Proxy Auth & 2FA | Companion authentication and authorization portal protecting web applications behind reverse proxies (Nginx, Traefik, Envoy) with group-based policy rules, Duo/FIDO2 MFA, and LDAP/file-based user backend. |
@@ -92,7 +92,7 @@ Contributions are warmly welcomed! To suggest an addition or correction:
 
 1. 🍴 Fork the repository.
 2. 🌿 Create a descriptive feature branch (`git checkout -b feature/add-new-tool`).
-3. 📝 Update `README.md` following the tabular structure, including verified pricing tiers, free trial details, or GitHub star badges.
+3. 📝 Update `README.md` following the tabular structure, including verified pricing tiers, free trial details, or GitHub Stars_Badges.
 4. 🚀 Open a Pull Request with a clear explanation of the proposed changes.
 
 ---
