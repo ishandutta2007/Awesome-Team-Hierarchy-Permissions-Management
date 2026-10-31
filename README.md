@@ -1,211 +1,121 @@
-# Awesome-Team-Hierarchy-Permissions-Management
-
-## Top Team Hierarchy & Permissions Management Ecosystem
-
-
-
-**Curated List of SaaS Products & Open-Source GitHub Projects**  
-
-*Focused on Organizational Hierarchy, Role-Based Access & Self-Hosted Identity Governance*  
-
-**Last updated: October 2026**
-
-
-
-This repository tracks notable **SaaS platforms** and **open-source projects** for **Team Hierarchy & Permissions Management**. These tools enable organizations to model reporting structures, assign roles, enforce least privilege, and automate access reviews—ensuring the right people have the right access to the right resources as teams grow and reorganize.
-
-
-
-**Examples** include HubSpot Team Management, Okta, Microsoft Entra ID, OneLogin, JumpCloud, Rippling, BambooHR, Ping Identity, Workday, and Lumos (the category leaders).
-
-
-
-**Open-source emphasis**: Team Hierarchy & Permissions Management is a domain where open-source tooling is **surprisingly capable but requires assembly across distinct layers**. **Keycloak 26.6+** now offers **Organization Groups**—isolated hierarchical group structures within each organization, solving the multi-tenant naming collision problem that plagued realm-level groups . **ZITADEL** provides native B2B organizations with unlimited multi-tenancy and full audit trails as immutable event streams . **midPoint** is the closest open-source equivalent to enterprise IGA, with practitioners confirming it handles provisioning, access reviews, and role management in production—though documentation is not beginner-friendly and requires identity engineering experience . For HR hierarchy foundations, **Frappe HR** provides the employee lifecycle, reporting lines, and organizational structure that feeds access decisions . The critical gap: **no open-source project provides the turnkey access request workflow** of Lumos—where an employee requests Slack access and the platform automatically provisions it with manager approval .
-
-
-
-Contributions welcome! Open a PR to add/update entries. Keep descriptions factual and link to official sites.
-
-
-
-## Table of Contents
-
-- [SaaS/Hosted Platforms](#saas-products)
-
-- [Open-Source GitHub Projects](#open-source-github-projects)
-
-- [How to Contribute](#how-to-contribute)
-
-- [Disclaimer](#disclaimer)
-
-
-
-## SaaS/Hosted Platforms
-
-
-
-- **[HubSpot Team Management](https://www.hubspot.com/)**  
-
-  Native team and user management within HubSpot; assign roles (Super Admin, Marketing, Sales, Service) and permissions per user, with SSO support on higher tiers. Focused on HubSpot-internal access rather than cross-application provisioning.
-
-
-
-- **[Okta](https://www.okta.com/)**  
-
-  Leading identity cloud with Universal Directory, SSO, MFA, Lifecycle Management (automated provisioning/deprovisioning via SCIM and HR-driven workflows), and Identity Governance for access certifications. The benchmark for turnkey user provisioning across thousands of app integrations.
-
-
-
-- **[Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/microsoft-entra)**  
-
-  Microsoft's cloud identity service with Lifecycle Workflows (joiner/mover/leaver triggered by HR events), entitlement management, access reviews, and provisioning to SaaS apps via SCIM. Deep integration with Microsoft 365 and Azure.
-
-
-
-- **[OneLogin](https://www.onelogin.com/)**  
-
-  Identity and access management platform (now part of One Identity) with SSO, MFA, and automated user provisioning workflows.
-
-
-
-- **[JumpCloud](https://jumpcloud.com/)**  
-
-  Cloud directory platform with Directory-as-a-Service lifecycle management, SSO, device management, and LDAP; automates user onboarding/offboarding across connected systems.
-
-
-
-- **[Rippling](https://www.rippling.com/)**  
-
-  Unified HR/IT platform with Identity and Access Management built on a single Employee Graph; automates onboarding/offboarding and enforces role-based access across 650+ integrations.
-
-
-
-- **[BambooHR](https://www.bamboohr.com/)**  
-
-  HRIS for small to mid-sized businesses with employee records, reporting structures, and time-off tracking; the HR data source that feeds downstream provisioning workflows.
-
-
-
-- **[Ping Identity](https://www.pingidentity.com/)**  
-
-  Identity platform (merged with ForgeRock) with AI-driven IGA, lifecycle management, and fraud/risk protection; PingOne for Workforce includes provisioning and governance capabilities.
-
-
-
-- **[Workday](https://www.workday.com/)**  
-
-  Enterprise HCM and financial management platform with organizational hierarchies, supervisory orgs, and role assignments; the authoritative source for workforce structure in large enterprises.
-
-
-
-- **[Lumos](https://www.lumos.com/)**  
-
-  Identity governance platform focused on **app access requests, approvals, and automated provisioning**; positioned for mid-market companies wanting Okta-like governance without full IGA complexity.
-
-
-
-## Open-Source GitHub Projects
-
-
-
-### Hierarchical Organization & Multi-Tenancy
-
-
-
-- **[Keycloak (Organization Groups)](https://www.keycloak.org/2026/04/org-groups)**  
-
-  Keycloak 26.6.0 introduced **Organization Groups**—hierarchical group management within each organization, enabling isolated team/department structures that don't collide across tenants . Features: nested groups mirroring real org charts (`/Engineering/Frontend`, `/Sales/EMEA`), automatic group assignment via Identity Provider mappers (hardcoded or claim-based, e.g., `department=backend` → `/Engineering/Backend`), and group memberships embedded in OIDC tokens and SAML assertions . **The strongest open-source foundation for B2B multi-tenant hierarchy**—but group memberships cannot be used in Keycloak authorization policies (realm groups are still needed for that) .
-
-
-
-- **[ZITADEL](https://github.com/zitadel/zitadel)**  
-
-  Open-source IAM platform (Apache-2.0) with **native B2B organizations and unlimited multi-tenancy**; the hierarchy is strictly modeled as Instance → Organization → Project, with data isolation at every level . Features: **full audit trail as immutable event streams** (every change is an event, accessible via API or streamed to external systems via webhooks), SSO, MFA, Passkeys (FIDO2), OIDC, SAML, SCIM, and API-first design (gRPC + REST) . Docker Compose deployment in under 3 minutes. **Best for teams building B2B platforms or SaaS products** needing per-tenant isolation with auditable hierarchy changes.
-
-
-
-- **[Casdoor](https://github.com/casdoor/casdoor)**  
-
-  UI-first open-source IAM/SSO platform (Apache-2.0) with OAuth 2.0, OIDC, SAML, CAS, LDAP, and RBAC; includes SCIM 2.0 server, built-in LDAP server, and MCP server for AI agent access . Supports 70+ identity providers and syncers for Keycloak, Okta, Entra ID, and Active Directory. **Developer-friendly** for smaller teams wanting a clean admin UI with multi-tenant support.
-
-
-
-### Identity Governance & Access Reviews
-
-
-
-- **[midPoint (Evolveum)](https://github.com/Evolveum/midpoint)**  
-
-  The closest open-source equivalent to enterprise **IGA** (Apache-2.0); practitioners describe it as genuinely capable for **full provisioning, access reviews, role management, and connector library** covering AD/LDAP, Microsoft Graph, Exchange, and more . One practitioner at REWE Group was "reasonably happy with it in production"; another got HR data in and created AD accounts with group assignments within days of starting evaluation . **Honest constraints**: documentation is not beginner-friendly, requires identity engineering experience, community activity could be more active, and self-hosting means owning infrastructure and upgrades . **Best for organizations with in-house technical capability** who cannot support commercial licensing or want to avoid US vendor dependency .
-
-
-
-- **[COmanage](https://github.com/COmanage/registry)**  
-
-  Open-source **person registry** (Apache 2.0) designed for Virtual Organizations; supports **hierarchical/delegated administration** via COUs (Collaborative Organizational Units) similar to LDAP OUs . Administrators can add roles and manage attributes for participants within their COU, with roles driving group memberships that control service access. Features: enrollment flows (invitation, self-signup, admin-driven), expiration policies with grace periods, **transaction history and point-in-time audit capabilities**, and plugin-based provisioning (LDAP out of the box) . **Best for research collaborations and federated identity scenarios**—not a general enterprise IGA.
-
-
-
-### HR Hierarchy Foundations
-
-
-
-- **[Frappe HR](https://github.com/frappe/hrms)**  
-
-  Open-source HR and Payroll software (complete HRMS with 13+ modules) that provides the **employee lifecycle, reporting lines, and organizational structure** that feed downstream access decisions . Features: Employee Management (onboarding, promotions, transfers, exit interviews), Leave and Attendance, Expense Claims with multi-level approval workflows, Performance Management with goals/KRAs, and Payroll/Taxation . Built on Frappe Framework (Python/JavaScript) with REST API. **Best for organizations wanting an integrated HR foundation** that can feed hierarchy data into an IAM/IGA layer.
-
-
-
-### Additional Strong Open-Source Options
-
-
-
-- **LARA (Lightweight Access Review Application)** — Open-source IGA solution for **access certification campaigns** directly against existing LDAP directories (Active Directory, eDirectory, OpenLDAP) with no data migration . Supports LDAP Group Memberships and NetIQ Identity Manager RBAC models, plus SCIM and CSV entitlement models . **Demo limited to 60 users**; production requires a license key . Best for organizations needing auditor-required access reviews without a full IGA suite.
-
-- **@torquedev/bundle-iam** — MIT-licensed IAM bundle (npm) with authentication, **RBAC, teams with per-team roles**, and admin dashboard; designed as a drop-in module for Node.js applications . **Developer-focused**—for building custom apps, not enterprise identity governance.
-
-
-
-**Frameworks for building custom systems**: For **multi-tenant hierarchy in an IAM platform**, Keycloak Organization Groups or ZITADEL . For **full IGA with provisioning and access reviews**, midPoint (accepting the engineering investment) . For **HR hierarchy data foundation**, Frappe HR . For **audit-required access certification**, LARA against existing LDAP . No open-source project provides the **turnkey access request + auto-provisioning workflow** of Lumos—that requires assembling an IGA layer (midPoint) with a request portal and provisioning connectors.
-
-
-
-## How to Contribute
-
-
-
-1. Fork the repo.
-
-2. Add/edit entries in `README.md` (follow existing format).
-
-3. Include: name, link, 1–2 sentence description, and whether it's SaaS or open-source.
-
-4. Submit PR with a short explanation.
-
-
-
-Star the repo if you find it useful!
-
-
-
-## Disclaimer
-
-
-
-- This is a **community-curated** list — not exhaustive and not an endorsement.
-
-- Team hierarchy and permissions platforms handling identity data must comply with applicable privacy regulations (GDPR, CCPA) and security frameworks (SOC 2, ISO 27001); **improper role assignments or missed access reviews create audit findings and breach risk**.
-
-- **Open-source hierarchy and permissions management is capable but requires assembly**—Keycloak Organization Groups and ZITADEL handle multi-tenant hierarchy , midPoint handles IGA , and Frappe HR handles HR data . However, **no open-source project provides the turnkey access request and auto-provisioning workflow** of Lumos or the managed compliance experience of Okta. Organizations requiring full lifecycle automation with vendor support should evaluate commercial platforms or invest in custom integration.
-
-- Verify license terms for commercial use; Keycloak uses Apache-2.0, ZITADEL uses Apache-2.0 , midPoint uses Apache-2.0 , and Frappe HR uses GPL-3.0 .
-
-
+<p align="center">
+  <img src="assets/banner.svg" alt="Awesome Team Hierarchy & Permissions Management" width="100%" />
+</p>
+
+# 🏢 Awesome Team Hierarchy & Permissions Management 🛡️
+
+<p align="center">
+  <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a>
+  <a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management/stargazers"><img src="https://img.shields.io/github/stars/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management?style=social" alt="GitHub Stars" /></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management/network/members"><img src="https://img.shields.io/github/forks/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management?style=social" alt="GitHub Forks" /></a>
+  <a href="https://github.com/ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License: MIT" /></a>
+  <a href="https://github.com/ishandutta2007"><img alt="GitHub followers" src="https://img.shields.io/github/followers/ishandutta2007?label=Follow" /></a>
+</p>
 
 ---
 
+## 🌟 Overview & Architecture
 
+An authoritative, SEO-optimized curated directory of enterprise **SaaS Platforms** and battle-tested **Open-Source GitHub Repositories** for **Team Hierarchy & Permissions Management**, **Role-Based Access Control (RBAC)**, **Attribute-Based Access Control (ABAC)**, and **Identity Governance and Administration (IGA)**.
 
-**Made for identity architects, IT administrators, security engineers, and HR operations teams.**  
+Whether you are architecting a multi-tenant B2B SaaS platform, structuring fine-grained departmental reporting trees, automating Joiner-Mover-Leaver (JML) provisioning with SCIM, or enforcing Zero Trust access audits, this repository provides complete pricing transparency, market analytics, and source references.
 
-Let's make team hierarchy and permissions management more open, but with clear eyes about the IGA engineering investment and access request workflow gaps that remain.
+### 📑 Table of Contents
+- [📊 Sector Overview & Market Dynamics](#-sector-overview--market-dynamics)
+- [☁️ SaaS & Hosted Platforms](#️-saashosted-platforms)
+- [🔓 Open-Source GitHub Projects](#-open-source-github-projects)
+- [📈 Star History](#-star-history)
+- [🤝 How to Contribute](#-how-to-contribute)
+- [☕ Support](#-support)
+- [⚖️ Disclaimer](#️-disclaimer)
+
+---
+
+## 📊 Sector Overview & Market Dynamics
+
+The global Identity & Access Management (IAM) and Identity Governance & Administration (IGA) sector is projected to reach **$24.3 billion to $29.7 billion by 2026**, expanding at a robust Compound Annual Growth Rate (CAGR) of approximately **11% to 15%** toward $60+ billion in the early 2030s.
+
+The market structure is **moderately fragmented**: while a concentrated core of tech behemoths (Microsoft, Okta, Workday, Ping Identity) commands massive enterprise identity estates, rapid migration to microservices, multi-cloud sprawl, and AI agent permissions has catalyzed high fragmentation with hundreds of specialized vendors and agile open-source engines competing across fine-grained authorization, CIAM, and just-in-time access requests.
+
+---
+
+## ☁️ SaaS/Hosted Platforms
+
+The following table evaluates top commercial SaaS solutions for team hierarchy modeling, workforce identity, HRMS data foundations, and access governance. Entries are ranked in descending order of enterprise scale (valuation / market capitalization).
+
+| 🏢 Platform | 💰 Company Valuation / Market Cap | 🏷️ Starting Paid Tier Pricing | 🎁 Free Tier / Trial Limit | 🔑 Key Architectural Capabilities |
+| :--- | :--- | :--- | :--- | :--- |
+| **[Microsoft Entra ID](https://www.microsoft.com/en-us/security/business/microsoft-entra)** | **$3.1 Trillion** *(Microsoft Parent Market Cap)* | **$7.00** per user/month (Entra ID P1 annual commitment); Entra ID P2 at **$10.00** per user/month | **Free Forever** included with Azure/M365 accounts (capped at 50k External ID MAUs, basic directory sync, core MFA; no Conditional Access or PIM) | Cloud identity directory, dynamic user/group lifecycle workflows, entitlement management, SCIM connectors, and Privileged Identity Management (PIM). |
+| **[Workday](https://www.workday.com/)** | **~$52.0 Billion** *(Public Market Cap: WDAY)* | **$34.00 – $60.00** PEPM (typical core HCM enterprise starting band, quote-based multi-year) | **No Free Plan**; 30-day guided enterprise sandbox/demo environment with sales consultation | Global enterprise HCM and ERP authoritative source for supervisory hierarchies, cost centers, matrix reporting, and HR-driven onboarding triggers. |
+| **[Okta](https://www.okta.com/)** | **~$37.0 Billion** *(Public Market Cap: OKTA)* | **$6.00** per user/month (Workforce Starter Suite, billed annually with $1,500 annual contract minimum) | **30-Day Free Trial** (restricted to 100 users, sandbox integrations and core MFA testing) | Universal Directory, automated SCIM provisioning across 7,000+ apps, Access Certifications, lifecycle rules, and Workflows engine. |
+| **[Rippling](https://www.rippling.com/)** | **$16.8 Billion** *(Series G Valuation)* | **$8.00** per employee/month (plus $40.00/month flat base platform fee) | **No Permanent Free Plan**; targeted 14-day free trial on IT & Device Management module (demo required for full suite) | Unified Employee Graph synchronizing reporting hierarchy, dynamic app assignment rules, automated onboarding/offboarding, and IT hardware management. |
+| **[HubSpot](https://www.hubspot.com/)** | **~$12.5 Billion** *(Public Market Cap: HUBS)* | **$15.00** per seat/month (Starter Edition billed annually; $20/month billed monthly) | **Free Forever** capped at 2 seats, up to 1,000 marketing contacts, and basic CRM permissions (HubSpot branding enforced) | Role-based permission sets, team hierarchy structuring (hierarchical parent-child teams available on Pro/Enterprise), and audit logs. |
+| **[Ping Identity](https://www.pingidentity.com/)** | **$2.8 Billion** *(Acquired by Thoma Bravo)* | **$3.00** per user/month (PingOne Workforce Essentials base starting tier, annual commitment) | **30-Day Free Trial** (full-featured cloud tenant sandbox with SSO, MFA, and directory connector testing) | Enterprise federation, decentralized identity, risk-aware adaptive access, and automated employee provisioning integrated with ForgeRock technology. |
+| **[JumpCloud](https://jumpcloud.com/)** | **$2.6 Billion** *(Series F Valuation)* | **$9.00** per user/month (Core Directory Package billed annually; $11/mo monthly) | **30-Day Free Trial** with full platform capabilities, transitioning to a free tier capped at 10 users and 10 devices | Cloud Directory Platform with Directory-as-a-Service, LDAP/SAML endpoints, cross-OS device MDM, and automated JML provisioning. |
+| **[BambooHR](https://www.bamboohr.com/)** | **$2.5 Billion** *(Providence Equity Valuation)* | **$10.25** per employee/month (Essentials tier; flat minimum starting at $250/mo for companies <25 employees) | **7-Day Free Trial** (complete access to core HRIS dashboard, employee profiles, and workflow testing without credit card) | Centralized employee database, visual organizational charts, reporting structures, and webhooks feeding downstream IAM directories. |
+| **[OneLogin](https://www.onelogin.com/)** | **~$800 Million** *(Estimated acquisition value by One Identity)* | **$4.00** per user/month (Advanced Directory & SSO package, billed annually) | **30-Day Free Trial** (full access for evaluation up to 25 users across cloud apps) | Real-time Active Directory sync, smart factor authentication, role-driven entitlement mapping, and unified app catalog. |
+| **[Lumos](https://www.lumos.com/)** | **~$200 Million** *(Series B Valuation)* | **$27,000.00** annual core platform base commitment (plus ~$15.00 per user/month or $180/user/year) | **No Self-Serve Free Tier**; 14-day coordinated sandbox proof-of-concept and free SaaS discovery risk assessment | Modern app access request portal, Slack/Teams conversational approvals, time-bound emergency privilege elevation, and auto-SCIM provisioning. |
+
+---
+
+## 🔓 Open-Source GitHub Projects
+
+Curated self-hosted engines and frameworks for implementing hierarchical multi-tenancy, Role-Based Access Control (RBAC), ReBAC (Relationship-Based Access Control), and Identity Governance. Repositories are ranked in descending order of GitHub community stars.
+
+| 📦 Repository & Badge | ⭐ GitHub Stars | 📜 License | 🎯 Primary Architecture Focus | 🛠️ Key Capabilities & Hierarchy Support |
+| :--- | :--- | :--- | :--- | :--- |
+| **[Keycloak](https://github.com/keycloak/keycloak)** <br> [![Stars](https://img.shields.io/github/stars/keycloak/keycloak?style=social&color=white)](https://github.com/keycloak/keycloak/stargazers) | **37,600+** | Apache-2.0 | Multi-Tenant IAM & Enterprise SSO | Features **Organization Groups** (introduced in Keycloak 26.6+) enabling nested organizational hierarchies (`/Corp/Engineering/DevOps`) isolated per tenant, claim-based auto group mapping, OIDC/SAML assertions, and LDAP federation. |
+| **[Authelia](https://github.com/authelia/authelia)** <br> [![Stars](https://img.shields.io/github/stars/authelia/authelia?style=social&color=white)](https://github.com/authelia/authelia/stargazers) | **29,400+** | Apache-2.0 | Lightweight Reverse Proxy Auth & 2FA | Companion authentication and authorization portal protecting web applications behind reverse proxies (Nginx, Traefik, Envoy) with group-based policy rules, Duo/FIDO2 MFA, and LDAP/file-based user backend. |
+| **[Casbin](https://github.com/casbin/casbin)** <br> [![Stars](https://img.shields.io/github/stars/casbin/casbin?style=social&color=white)](https://github.com/casbin/casbin/stargazers) | **20,400+** | Apache-2.0 | Multi-Model Authorization Engine | Supports Classic ACL, RBAC with hierarchical role inheritance, ABAC, and RESTful path matching across 10+ programming languages. Perfect for embedding fine-grained permissions directly into application microservices. |
+| **[ZITADEL](https://github.com/zitadel/zitadel)** <br> [![Stars](https://img.shields.io/github/stars/zitadel/zitadel?style=social&color=white)](https://github.com/zitadel/zitadel/stargazers) | **15,400+** | Apache-2.0 | Cloud-Native Multi-Tenant Identity | Strictly models hierarchy as `Instance → Organization → Project`. Provides an immutable audit trail using event sourcing, Passkeys (FIDO2), B2B tenant delegation, and turnkey Docker/Kubernetes deployment. |
+| **[Casdoor](https://github.com/casdoor/casdoor)** <br> [![Stars](https://img.shields.io/github/stars/casdoor/casdoor?style=social&color=white)](https://github.com/casdoor/casdoor/stargazers) | **14,700+** | Apache-2.0 | UI-First IAM & Identity Platform | Built-in RBAC/ABAC management UI, built-in LDAP server, SCIM 2.0 engine, multi-tenant organization boundaries, and synchronization connectors for Keycloak, Okta, and Entra ID. |
+| **[Ory Kratos](https://github.com/ory/kratos)** <br> [![Stars](https://img.shields.io/github/stars/ory/kratos?style=social&color=white)](https://github.com/ory/kratos/stargazers) | **13,900+** | Apache-2.0 | Headless User Management & Identity | API-first, cloud-native user identity management and registration platform supporting custom JSON schemas for user profiles, multi-factor authentication, and integration with authorization engines. |
+| **[Open Policy Agent (OPA)](https://github.com/open-policy-agent/opa)** <br> [![Stars](https://img.shields.io/github/stars/open-policy-agent/opa?style=social&color=white)](https://github.com/open-policy-agent/opa/stargazers) | **12,400+** | Apache-2.0 | General-Purpose Policy Engine | Decouples policy decision-making using Rego declarative language. Enforces hierarchical role checking, Kubernetes admission control, microservice API authorization, and data filtering across distributed stacks. |
+| **[Frappe HR](https://github.com/frappe/hrms)** <br> [![Stars](https://img.shields.io/github/stars/frappe/hrms?style=social&color=white)](https://github.com/frappe/hrms/stargazers) | **8,900+** | GPL-3.0 | Open-Source HRMS & Org Hierarchy | Authoritative HR foundation maintaining full reporting structures, employee lifecycles (JML), department structures, multi-level approval workflows, and REST APIs to feed identity layers. |
+| **[Permit.io OPAL](https://github.com/permitio/opal)** <br> [![Stars](https://img.shields.io/github/stars/permitio/opal?style=social&color=white)](https://github.com/permitio/opal/stargazers) | **5,500+** | Apache-2.0 | Real-Time Policy & Data Administration | Open Policy Administration Layer that synchronizes policy and authorization data changes in real-time to distributed agents (OPA/Cedar), enabling real-time permission revocation across microservices. |
+| **[Ory Keto](https://github.com/ory/keto)** <br> [![Stars](https://img.shields.io/github/stars/ory/keto?style=social&color=white)](https://github.com/ory/keto/stargazers) | **5,400+** | Apache-2.0 | Relationship-Based Access Control (ReBAC) | Open-source implementation of Google's Zanzibar paper. Resolves nested team memberships, hierarchical inherited permissions, and graph relations with ultra-low latency gRPC checks. |
+| **[midPoint](https://github.com/Evolveum/midpoint)** <br> [![Stars](https://img.shields.io/github/stars/Evolveum/midpoint?style=social&color=white)](https://github.com/Evolveum/midpoint/stargazers) | **540+** | Apache-2.0 | Enterprise Identity Governance (IGA) | The premier open-source IGA platform providing comprehensive provisioning connectors, scheduled access review campaigns, RBAC/ABAC role hierarchies, and automated reconciliation against Active Directory/LDAP. |
+| **[COmanage Registry](https://github.com/Internet2/grouper)** <br> [![Stars](https://img.shields.io/github/stars/Internet2/grouper?style=social&color=white)](https://github.com/Internet2/grouper/stargazers) | **100+** | Apache-2.0 | Virtual Org & Distributed Registry | Designed for federated research and collaborative organizations. Implements Collaborative Organizational Units (COUs) for delegated team administration, attribute governance, and provisioning hooks. |
+
+---
+
+## 📈 Star History
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management&type=date&legend=top-left)](https://star-history.dera.page/#ishandutta2007/Awesome-Team-Hierarchy-Permissions-Management&type=date&legend=top-left)
+
+---
+
+## 🤝 How to Contribute
+
+Contributions are warmly welcomed! To suggest an addition or correction:
+
+1. 🍴 Fork the repository.
+2. 🌿 Create a descriptive feature branch (`git checkout -b feature/add-new-tool`).
+3. 📝 Update `README.md` following the tabular structure, including verified pricing tiers, free trial details, or GitHub star badges.
+4. 🚀 Open a Pull Request with a clear explanation of the proposed changes.
+
+---
+
+## ☕ Support
+
+If you found this curated ecosystem directory helpful in navigating permissions management and team hierarchies:
+
+- ⭐ **Star** this repository to keep it visible for other developers and architects.
+- 🍴 **Fork** and share it with your engineering and security teams.
+- 💖 Sponsor ongoing maintenance and research via the [GitHub Sponsors Dashboard](https://github.com/sponsors/ishandutta2007).
+
+---
+
+## ⚖️ Disclaimer
+
+- This repository is a **community-curated index** created for informational, educational, and architectural planning purposes. Listings do not constitute an endorsement.
+- All product names, logos, trademarks, and registered trademarks are property of their respective owners.
+- Compliance with data protection regulations (GDPR, HIPAA, SOC 2, ISO 27001) is the responsibility of the implementing organization. Always verify pricing and license agreements with vendors directly.
+
+---
+
+<p align="center">
+  <b>Curated with care for Identity Architects, DevOps Engineers, and Security Leaders.</b><br>
+  Built on <a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome">Awesome Lists</a>.
+</p>
